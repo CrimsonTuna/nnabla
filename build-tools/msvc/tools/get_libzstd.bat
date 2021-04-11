@@ -23,7 +23,11 @@ MD %ZSTD_PACKAGE%
 CD %ZSTD_PACKAGE%
 cmake -E tar xvzf ..\%ZSTD_PACKAGE%.zip || GOTO :error
 
+IF NOT EXIST "%VENV%\Scripts" (
+MOVE dll\libzstd.dll %~p0\zstd.dll
+) ELSE (
 MOVE dll\libzstd.dll %VENV%\Scripts\zstd.dll
+)
 CD ..
 
 DEL %ZSTD_PACKAGE%.zip
