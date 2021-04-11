@@ -23,7 +23,12 @@ MD %LZ4_PACKAGE%
 CD %LZ4_PACKAGE%
 cmake -E tar xvzf ..\%LZ4_PACKAGE%.zip || GOTO :error
 
+IF NOT EXIST "%VENV%\Scripts" (
+MOVE dll\msys-lz4-1.dll %~p0\liblz4.dll
+) ELSE (
+echo %VENV%\Scripts\liblz4.dll
 MOVE dll\msys-lz4-1.dll %VENV%\Scripts\liblz4.dll
+)
 CD ..
 
 DEL %LZ4_PACKAGE%.zip
